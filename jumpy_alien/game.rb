@@ -2,6 +2,7 @@
 $: << "./vendor"
 
 require "app/models/scene"
+require "app/models/resources"
 
 require "app/scenes/main_menu"
 require "app/scenes/game"

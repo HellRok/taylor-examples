@@ -7,18 +7,29 @@ class MainMenu
   def initialize
     @play_button = MainMenu::Button.new(
       test_id: :play_button,
-      text: "Play"
+      text: "Play",
+      position: Rectangle[20, 350, 320, 70]
     ) { play! }
 
     @settings_button = MainMenu::Button.new(
       test_id: :settings_button,
-      text: "Settings"
+      text: "Settings",
+      position: Rectangle[20, 430, 320, 70]
     ) {}
 
     @quit_button = MainMenu::Button.new(
       test_id: :quit_button,
-      text: "Quit"
+      text: "Quit",
+      position: Rectangle[20, 510, 320, 70]
     ) {}
+  end
+
+  def any_button_hover?
+    [
+      @play_button,
+      @settings_button,
+      @quit_button
+    ].any? { |button| button.hover? }
   end
 
   def play!
@@ -26,9 +37,24 @@ class MainMenu
   end
 
   def update(delta)
-    @transition.update(delta)
+    @play_button.update
+    @settings_button.update
+    @quit_button.update
+    @transition&.update(delta)
+
+    Cursor.icon = if any_button_hover?
+      Cursor::POINTING_HAND
+    else
+      Cursor::DEFAULT
+    end
   end
 
   def draw
+    Window.clear colour: Colour::RAYWHITE
+    @play_button.draw
+    @settings_button.draw
+    @quit_button.draw
+
+    @transition&.draw
   end
 end
