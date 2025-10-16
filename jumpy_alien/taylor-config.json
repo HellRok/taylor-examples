@@ -1,0 +1,20 @@
+{
+  "name": "Jumpy Alien",
+  "version": "v0.0.1",
+  "input": "game.rb",
+  "export-directory": "./exports",
+  "export-targets": [
+    "linux",
+    "windows",
+    "osx/apple",
+    "osx/intel",
+    "web"
+  ],
+  "load-paths": [
+    "./",
+    "./vendor"
+  ],
+  "copy-paths": [
+    "./assets"
+  ]
+}
