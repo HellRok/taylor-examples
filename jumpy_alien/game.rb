@@ -1,5 +1,10 @@
 # Add the path ./vendor so we can easily require third party libraries.
-$: << './vendor'
+$: << "./vendor"
+
+require "app/models/scene"
+
+require "app/scenes/main_menu"
+require "app/scenes/game"
 
 # Open up a window
 Window.open(width: 800, height: 480, title: "Jumpy Alien")
@@ -10,21 +15,20 @@ Audio.open
 # Get the current monitor frame rate and set our target framerate to match.
 Window.target_frame_rate = Monitor.current.refresh_rate
 
+Scene.current = MainMenu.new
+
 # Define your main method
 def main
   # Get the amount of time passed since the last frame was rendered
   delta = Window.frame_time
 
   # Your update logic goes here
+  Scene.update(delta)
 
   Window.draw do
     # Your drawing logic goes here
 
-    Window.clear(colour: Colour::RAYWHITE)
-    Font.default.draw(
-      "Welcome to your first Taylor application!",
-      x: 190, y: 200, size: 20, colour: Colour::DARKGRAY
-    )
+    Scene.draw
   end
 end
 
