@@ -12,6 +12,6 @@ module Fragments
 
     def self.play! = play_button.callback.call
     def self.transitioning? = !transition.nil?
-    def self.finish_transition = transition.callback.call
+    def self.finish_transition = main_menu.update(1)
   end
 end

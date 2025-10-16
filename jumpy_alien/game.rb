@@ -7,7 +7,7 @@ require "app/scenes/main_menu"
 require "app/scenes/game"
 
 # Open up a window
-Window.open(width: 800, height: 480, title: "Jumpy Alien")
+Window.open(width: 360, height: 600, title: "Jumpy Alien")
 
 # Setup audio so we can play sounds
 Audio.open

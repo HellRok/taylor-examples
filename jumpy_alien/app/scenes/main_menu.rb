@@ -26,6 +26,7 @@ class MainMenu
   end
 
   def update(delta)
+    @transition.update(delta)
   end
 
   def draw
