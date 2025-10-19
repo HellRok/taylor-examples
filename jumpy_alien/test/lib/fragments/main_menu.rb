@@ -10,7 +10,7 @@ module Fragments
     def self.quit_button = main_menu.instance_variable_get(:@quit_button)
     def self.transition = main_menu.instance_variable_get(:@transition)
 
-    def self.play! = play_button.callback.call
+    def self.play! = play_button.click
     def self.transitioning? = !transition.nil?
     def self.finish_transition = transition.update(1)
   end

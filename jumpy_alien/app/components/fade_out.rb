@@ -11,4 +11,7 @@ class FadeOut
 
     @callback.call if @time_left <= 0
   end
+
+  def draw
+  end
 end

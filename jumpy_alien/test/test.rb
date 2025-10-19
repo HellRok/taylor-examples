@@ -9,6 +9,7 @@ require "app/scenes/game"
 require "test/lib/test_scene"
 require "test/lib/fragments/main_menu"
 require "test/lib/fragments/game"
+require "test/lib/mocks/mouse"
 
 require "test/flows/player_can_play_game_test"
 

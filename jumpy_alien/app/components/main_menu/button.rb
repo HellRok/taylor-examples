@@ -31,6 +31,17 @@ class MainMenu
         Mouse.position.y.between?(@position.y, @position.y + @position.height)
     end
 
+    def clicked?
+      hover? && Mouse.pressed?(Mouse::LEFT)
+    end
+
+    def click
+      return if @callback_called
+
+      @callback_called = true
+      @callback.call
+    end
+
     def update
       if hover?
         @position.colour = Colour::GRAY
@@ -39,6 +50,8 @@ class MainMenu
         @position.colour = Colour::LIGHTGRAY
         @position.outline = Colour::GRAY
       end
+
+      click if clicked?
     end
 
     def draw
