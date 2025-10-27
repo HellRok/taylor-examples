@@ -19,7 +19,15 @@
     expect(Scene.current).to_be_a(Game)
   end
 
-  And "there score is zero" do
+  And "their score is zero" do
     expect(Fragments::Game.score).to_equal(0)
+  end
+
+  When "they jump through a pipe" do
+    Fragments::Game.jump_through_pipe
+  end
+
+  Then "their score increases" do
+    expect(Fragments::Game.score).to_equal(1)
   end
 end

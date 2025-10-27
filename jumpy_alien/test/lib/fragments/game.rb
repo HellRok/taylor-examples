@@ -5,6 +5,8 @@ module Fragments
       Scene.current
     end
 
-    def self.score = 0
+    def self.score = game.score.score
+
+    def self.jump_through_pipe = game.jump_through_pipe
   end
 end
