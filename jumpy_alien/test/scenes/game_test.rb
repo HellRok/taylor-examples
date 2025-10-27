@@ -1,4 +1,4 @@
-@unit.describe "Game#initialize" do
+@headed.describe "Game#initialize" do
   When "we initialize a game" do
     @game = Game.new
   end
@@ -12,7 +12,7 @@
   end
 end
 
-@unit.describe "Game#jump_through_pipe" do
+@headed.describe "Game#jump_through_pipe" do
   Given "we have a game" do
     @game = Game.new
   end

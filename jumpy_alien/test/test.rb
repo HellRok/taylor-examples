@@ -1,7 +1,20 @@
-@unit = Neospec::Suite.new
-@flow = Neospec::Suite.new
-neospec = Neospec.new(suites: [@unit, @flow])
+$: << "./vendor"
 
+@unit = Neospec::Suite.new
+@headed = Neospec::Suite.new
+@headed.setup do
+  Window.open(width: 100, height: 100, title: "=== Tests ===")
+end
+@headed.teardown do
+  Window.close
+end
+
+neospec = Neospec.new(suites: [@unit])
+neospec.suites << @headed unless ENV["HEADLESS"]
+
+require "tilemap"
+
+require "app/models/resources"
 require "app/models/scene"
 require "app/scenes/main_menu"
 require "app/scenes/game"
@@ -17,6 +30,7 @@ require "test/models/scene_test"
 require "test/scenes/game_test"
 require "test/scenes/main_menu_test"
 require "test/components/fade_out_test"
+require "test/components/game/background_test"
 require "test/components/main_menu/button_test"
 
 neospec.run!

@@ -1,6 +1,8 @@
 # Add the path ./vendor so we can easily require third party libraries.
 $: << "./vendor"
 
+require "tilemap"
+
 require "app/models/scene"
 require "app/models/resources"
 

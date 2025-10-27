@@ -1,4 +1,4 @@
-@flow.describe "Player can play the game" do
+@headed.describe "Player can play the game" do
   Given "the player is on the main menu" do
     Scene.current = MainMenu.new
   end

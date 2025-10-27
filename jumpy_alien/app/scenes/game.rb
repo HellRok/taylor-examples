@@ -16,10 +16,12 @@ class Game
   end
 
   def update(delta)
+    @background.update(delta)
   end
 
   def draw
     Window.clear colour: Colour::BLUE
+    @background.draw
   end
 
   def jump_through_pipe = @score.increment
