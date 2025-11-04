@@ -19,7 +19,7 @@ class Tilemap
   end
 
   def tile_for(id)
-    tile = Image.generate(width: @size, height: @size, colour: Colour::GREEN)
+    tile = Image.generate(width: @size, height: @size)
     tile.draw!(
       image: @image,
       source: source_for(id)
@@ -30,7 +30,7 @@ class Tilemap
     @width = ids.first.size
     @height = ids.size
 
-    map = Image.generate(width: @width * @size, height: @height * @size, colour: Colour::BLUE)
+    map = Image.generate(width: @width * @size, height: @height * @size)
 
     ids.each.with_index { |row, y|
       row.each.with_index { |id, x|
