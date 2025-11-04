@@ -18,14 +18,15 @@ class Game
   def update(delta)
     @background.update(delta)
     @ground.update(delta)
+
+    @pipes.update(delta)
     @alien.update(delta)
   end
 
   def draw
-    Window.clear colour: Colour::BLUE
     @background.draw
+    @pipes.draw
     @ground.draw
-
     @alien.draw
   end
 

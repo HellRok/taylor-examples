@@ -30,9 +30,10 @@ require "test/models/scene_test"
 require "test/scenes/game_test"
 require "test/scenes/main_menu_test"
 require "test/components/fade_out_test"
+require "test/components/game/alien_test"
 require "test/components/game/background_test"
 require "test/components/game/ground_test"
-require "test/components/game/alien_test"
+require "test/components/game/pipes_test"
 require "test/components/main_menu/button_test"
 
 neospec.run!
