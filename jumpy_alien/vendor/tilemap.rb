@@ -12,10 +12,18 @@ class Tilemap
     @image.width / @size
   end
 
-  def tile_for(id)
+  def source_for(id)
     x = id % tiles_per_row
     y = (id / tiles_per_row.to_f).floor
     Rectangle.new(x: x * @size, y: y * @size, width: @size, height: @size)
+  end
+
+  def tile_for(id)
+    tile = Image.generate(width: @size, height: @size, colour: Colour::GREEN)
+    tile.draw!(
+      image: @image,
+      source: source_for(id)
+    )
   end
 
   def generate_from(ids)
@@ -29,7 +37,7 @@ class Tilemap
         unless id.negative?
           map.draw!(
             image: @image,
-            source: tile_for(id),
+            source: source_for(id),
             destination: Rectangle.new(x: x * @size, y: y * @size, width: @size, height: @size)
           )
         end
