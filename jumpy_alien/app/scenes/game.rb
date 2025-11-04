@@ -12,7 +12,7 @@ class Game
     @alien = Game::Alien.new
     @background = Game::Background.new
     @ground = Game::Ground.new
-    @pipes = Game::Pipes.new { jump_through_pipe }
+    @pipes = Game::Pipes.new(on_spawn: method(:jump_through_pipe))
   end
 
   def update(delta)
@@ -28,6 +28,7 @@ class Game
     @pipes.draw
     @ground.draw
     @alien.draw
+    @score.draw
   end
 
   def jump_through_pipe = @score.increment

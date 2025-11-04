@@ -2,9 +2,10 @@ class Game
   class Pipes
     attr_reader :pipes, :texture, :velocity
 
-    def initialize
+    def initialize(on_spawn: -> {})
       @pipes = [Vector2[300, 300]]
       @velocity = Vector2[-36, 0]
+      @on_spawn = on_spawn
       generate_texture
     end
 
@@ -51,6 +52,7 @@ class Game
 
     def spawn_pipe
       @pipes.push(Vector2[400, 300])
+      @on_spawn.call
     end
 
     def update(delta)

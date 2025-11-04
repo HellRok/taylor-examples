@@ -18,7 +18,7 @@ class MainMenu
     def text_position
       return @text_position if @text_position
 
-      size = font.measure(text)
+      size = font.measure(@text)
 
       @text_position = Vector2[
         @position.x + ((@position.width - size.width) / 2),

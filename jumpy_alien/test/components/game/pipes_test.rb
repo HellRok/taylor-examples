@@ -12,7 +12,8 @@ end
 
 @headed.describe "Game::Pipes#update" do
   Given "we have an pipes" do
-    @pipes = Game::Pipes.new
+    @spawn_count = 0
+    @pipes = Game::Pipes.new(on_spawn: -> { @spawn_count += 1 })
   end
 
   Then "there is a pipe" do
@@ -27,12 +28,20 @@ end
     expect(@pipes.pipes.size).to_equal(2)
   end
 
+  And "on_spawn was called" do
+    expect(@spawn_count).to_equal(1)
+  end
+
   When "some more time passed" do
     @pipes.update(6.13)
   end
 
   Then "there is another pipe" do
     expect(@pipes.pipes.size).to_equal(3)
+  end
+
+  And "on_spawn was called" do
+    expect(@spawn_count).to_equal(2)
   end
 
   When "a bit more time passed" do
