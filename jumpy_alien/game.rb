@@ -19,6 +19,7 @@ Audio.open
 Window.target_frame_rate = Monitor.current.refresh_rate
 
 Scene.current = MainMenu.new
+Scene.current = Game.new if Scene::DEBUG
 
 # Define your main method
 def main

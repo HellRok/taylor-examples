@@ -1,5 +1,5 @@
 @headed.describe "Game::Pipes#initialize" do
-  When "we initialise an pipes" do
+  When "we initialise pipes" do
     @pipes = Game::Pipes.new
   end
 
@@ -11,7 +11,7 @@
 end
 
 @headed.describe "Game::Pipes#update" do
-  Given "we have an pipes" do
+  Given "we have pipes" do
     @spawn_count = 0
     @pipes = Game::Pipes.new(on_spawn: -> { @spawn_count += 1 })
   end
@@ -50,5 +50,25 @@ end
 
   Then "a pipe unloads" do
     expect(@pipes.pipes.size).to_equal(2)
+  end
+end
+
+@headed.describe "Game::Pipes#hitboxes" do
+  Given "we have pipes" do
+    @pipes = Game::Pipes.new
+    @pipes.update(3.5)
+  end
+
+  Then "return the hitboxes for those pipes" do
+    hitboxes = @pipes.hitboxes
+    expect(hitboxes.size).to_equal(4)
+
+    # First pipe
+    expect(hitboxes[0].to_h.slice(:x, :y, :width, :height)).to_equal({x: 167.0, y: -13.0, width: 14.0, height: 266.0})
+    expect(hitboxes[1].to_h.slice(:x, :y, :width, :height)).to_equal({x: 167.0, y: 347.0, width: 14.0, height: 266.0})
+
+    # Second pipe
+    expect(hitboxes[2].to_h.slice(:x, :y, :width, :height)).to_equal({x: 393.0, y: -13.0, width: 14.0, height: 266.0})
+    expect(hitboxes[3].to_h.slice(:x, :y, :width, :height)).to_equal({x: 393.0, y: 347.0, width: 14.0, height: 266.0})
   end
 end

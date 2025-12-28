@@ -25,6 +25,7 @@ class Game
         [115],
         [115],
         [115],
+        [115],
         [135],
         [],
         [],
@@ -69,6 +70,35 @@ class Game
     def draw
       @pipes.each do |pipe|
         @texture.draw(position: pipe)
+      end
+
+      hitboxes.each(&:draw) if Scene::DEBUG
+    end
+
+    def hitboxes
+      buffer = 2 # 2 pixels of leniency
+      gap = 5 * 18 # 5 tiles of gap
+      width = @texture.width - (buffer * 2)
+      height = ((@texture.height - gap) / 2) - (buffer * 2)
+      offset_x = (@texture.width / 2) - buffer
+      offset_y_top = (gap / 2) + buffer + height
+      offset_y_bottom = (gap / 2) + buffer
+
+      @pipes.flat_map do |pipe|
+        [
+          Rectangle.new(
+            x: pipe.x - offset_x, y: pipe.y - offset_y_top,
+            width: width, height: height,
+            colour: Colour::BLANK,
+            outline: Colour::RED
+          ),
+          Rectangle.new(
+            x: pipe.x - offset_x, y: pipe.y + offset_y_bottom,
+            width: width, height: height,
+            colour: Colour::BLANK,
+            outline: Colour::RED
+          )
+        ]
       end
     end
   end

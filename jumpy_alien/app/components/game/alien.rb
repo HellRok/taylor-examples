@@ -1,6 +1,6 @@
 class Game
   class Alien
-    attr_reader :alien, :position, :velocity, :up_texture, :down_texture
+    attr_reader :alien, :position, :velocity, :up_texture, :down_texture, :hitbox
 
     TILES = {
       green: {up: 0, down: 1}
@@ -14,6 +14,12 @@ class Game
       @alien = :green
       @position = Vector2[180, 300]
       @velocity = Vector2[0, 0]
+      @hitbox = Rectangle.new(
+        x: @position.x - 8, y: @position.y - 8,
+        width: 16, height: 16,
+        colour: Colour::BLANK,
+        outline: Colour::BLUE
+      )
       generate_textures
     end
 
@@ -32,12 +38,16 @@ class Game
       @velocity.y = JUMP if Mouse.pressed?(Mouse::LEFT)
 
       @position += @velocity
+      @hitbox.x = @position.x - 8
+      @hitbox.y = @position.y - 8
     end
 
     def draw
       @up_texture.draw(
         position: position
       )
+
+      @hitbox.draw if Scene::DEBUG
     end
   end
 end
