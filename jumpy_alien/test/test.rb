@@ -1,5 +1,7 @@
 $: << "./vendor"
 
+Logging.level = Logging::NONE
+
 @unit = Neospec::Suite.new
 @headed = Neospec::Suite.new
 @headed.setup do
