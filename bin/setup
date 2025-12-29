@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "=== Setting up git hooks ==="
+git config core.hooksPath ./.git-hooks
+echo "...done"
+
+echo "=== Installing Gems ==="
+bundle check || bundle install
+echo "...done"
+
+echo "=== Taylor Check ==="
+taylor --version /dev/null
+echo "...done"
