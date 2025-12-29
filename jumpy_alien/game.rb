@@ -15,7 +15,7 @@ Window.open(width: 360, height: 600, title: "Jumpy Alien")
 # Setup audio so we can play sounds
 Audio.open
 
-# Get the current monitor frame rate and set our target framerate to match.
+# Get the current monitor frame rate and set our target frame rate to match.
 Window.target_frame_rate = Monitor.current.refresh_rate
 
 Scene.current = MainMenu.new
