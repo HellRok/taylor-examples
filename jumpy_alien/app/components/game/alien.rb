@@ -30,12 +30,16 @@ class Game
       @down_texture = tilemap.tile_for(TILES[@alien][:down]).flip_horizontally!.to_texture
     end
 
+    def jump_pressed?
+      Mouse.pressed?(Mouse::LEFT) || Key.pressed?(Key::SPACE)
+    end
+
     def update(delta)
       @velocity.y += GRAVITY * delta
 
       @velocity.y = MAX_FALL_VELOCITY if @velocity.y > MAX_FALL_VELOCITY
 
-      @velocity.y = JUMP if Mouse.pressed?(Mouse::LEFT)
+      @velocity.y = JUMP if jump_pressed?
 
       @position += @velocity
       @hitbox.x = @position.x - 8
@@ -49,5 +53,7 @@ class Game
 
       @hitbox.draw if Scene::DEBUG
     end
+
+    def kill = nil
   end
 end

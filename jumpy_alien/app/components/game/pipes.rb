@@ -1,11 +1,17 @@
 class Game
   class Pipes
-    attr_reader :pipes, :texture, :velocity
+    attr_reader :alien, :pipes, :texture, :velocity
 
-    def initialize(on_spawn: -> {})
+    def initialize(
+      alien: nil,
+      on_collision: -> {},
+      on_jumped_through: -> {}
+    )
+      @alien = alien
       @pipes = [Vector2[300, 300]]
       @velocity = Vector2[-36, 0]
-      @on_spawn = on_spawn
+      @on_collision = on_collision
+      @on_jumped_through = on_jumped_through
       generate_texture
     end
 
@@ -53,7 +59,6 @@ class Game
 
     def spawn_pipe
       @pipes.push(Vector2[400, 300])
-      @on_spawn.call
     end
 
     def update(delta)
@@ -61,8 +66,14 @@ class Game
         pipe + @velocity * delta
       end
 
-      spawn_pipe if @pipes.last.x < 180
+      if @pipes.last.x < 180
+        spawn_pipe
+        @on_jumped_through.call
+      end
+
       @pipes.shift if @pipes.first.x < -50
+
+      check_for_collisions
 
       Scene.debug_info[:pipe_count] = @pipes.count
     end
@@ -100,6 +111,17 @@ class Game
           )
         ]
       end
+    end
+
+    def check_for_collisions
+      hit = hitboxes.any? do |pipe_hitbox|
+        pipe_hitbox.x < (@alien.hitbox.x + @alien.hitbox.width) &&
+          (pipe_hitbox.x + pipe_hitbox.width) > @alien.hitbox.x &&
+          pipe_hitbox.y < (@alien.hitbox.y + @alien.hitbox.height) &&
+          (pipe_hitbox.y + pipe_hitbox.height) > @alien.hitbox.y
+      end
+
+      @on_collision.call if hit
     end
   end
 end

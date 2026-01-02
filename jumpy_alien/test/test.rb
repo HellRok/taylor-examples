@@ -5,6 +5,7 @@ Logging.level = Logging::NONE
 @unit = Neospec::Suite.new
 @headed = Neospec::Suite.new
 @headed.setup do
+  Window.config = Window::Flag::HIDDEN | Window::Flag::UNFOCUSED
   Window.open(width: 100, height: 100, title: "=== Tests ===")
 end
 @headed.teardown do

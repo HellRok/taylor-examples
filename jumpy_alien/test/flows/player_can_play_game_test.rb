@@ -30,4 +30,12 @@
   Then "their score increases" do
     expect(Fragments::Game.score).to_equal(1)
   end
+
+  When "they hit an obstacle" do
+    Fragments::Game.hit_obstacle
+  end
+
+  Then "the game ends" do
+    expect(Fragments::Game.ended?).to_be_true
+  end
 end

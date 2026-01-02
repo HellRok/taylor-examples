@@ -8,5 +8,9 @@ module Fragments
     def self.score = game.score.score
 
     def self.jump_through_pipe = game.jump_through_pipe
+
+    def self.hit_obstacle = game.player_died
+
+    def self.ended? = !game.instance_variable_get(:@end_screen).nil?
   end
 end
