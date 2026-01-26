@@ -2,6 +2,7 @@ class Scene
   DEBUG = ENV.fetch("DEBUG", false)
   @debug_info = {}
   @current = nil
+  @should_close = false
 
   def self.debug_info = @debug_info
 
@@ -30,5 +31,13 @@ class Scene
         size: 20
       )
     end
+  end
+
+  def self.close
+    @should_close = true
+  end
+
+  def self.close?
+    Window.close? || @should_close
   end
 end

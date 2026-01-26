@@ -33,20 +33,24 @@ class MainMenu
   end
 
   def play!
-    @transition = FadeOut.new { Scene.current = Game.new }
+    @transition = FadeOut.new {
+      Cursor.icon = Cursor::DEFAULT
+      Scene.current = Game.new
+    }
   end
 
   def update(delta)
     @play_button.update
     @settings_button.update
     @quit_button.update
-    @transition&.update(delta)
 
     Cursor.icon = if any_button_hover?
       Cursor::POINTING_HAND
     else
       Cursor::DEFAULT
     end
+
+    @transition&.update(delta)
   end
 
   def draw

@@ -82,7 +82,7 @@ end
   end
 end
 
-@unit.describe "MainMenu::Button#clocked?" do
+@unit.describe "MainMenu::Button#clicked?" do
   Given "we have a button" do
     @button = MainMenu::Button.new(
       test_id: "test id",

@@ -40,7 +40,7 @@ if Taylor::Platform.browser?
   Browser.main_loop = "main"
 else
   # Detect window close button or ESC key
-  main until Window.close?
+  main until Scene.close?
 end
 
 Audio.close

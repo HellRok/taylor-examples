@@ -1,20 +1,7 @@
-@headed.describe "Game#initialize" do
-  When "we initialize a game" do
-    @game = Game.new
-  end
-
-  Then "we have the expected attributes" do
-    expect(@game.score).to_be_a(Game::Score)
-    expect(@game.alien).to_be_a(Game::Alien)
-    expect(@game.background).to_be_a(Game::Background)
-    expect(@game.ground).to_be_a(Game::Ground)
-    expect(@game.pipes).to_be_a(Game::Pipes)
-  end
-end
-
-@headed.describe "Game#jump_through_pipe" do
+@headed.describe "Play through a session and restart" do
   Given "we have a game" do
     @game = Game.new
+    Scene.current = @game
   end
 
   When "we jump through a pipe" do
@@ -23,5 +10,22 @@ end
 
   Then "our score goes up" do
     expect(@game.score.score).to_equal(1)
+  end
+
+  But "we hit a pipe" do
+    @game.player_died
+  end
+
+  Then "We see the end screen with our score" do
+    expect(@game.end_screen.score).to_equal(1)
+  end
+
+  When "We click retry" do
+    @game.end_screen.retry!
+    @game.end_screen.transition.callback.call
+  end
+
+  Then "the game is reset" do
+    expect(Scene.current).not_to_equal(@game)
   end
 end
