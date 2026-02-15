@@ -6,9 +6,9 @@ class Game
       green: {up: 0, down: 1}
     }
 
-    GRAVITY = 8
+    GRAVITY = 5
     MAX_FALL_VELOCITY = 4
-    JUMP = -3
+    JUMP = -2.2
 
     def initialize
       @state = :alive

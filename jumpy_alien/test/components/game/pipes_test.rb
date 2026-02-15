@@ -29,7 +29,7 @@ end
   end
 
   When "some time passed" do
-    @pipes.update(3.5)
+    @pipes.update(5)
   end
 
   Then "there is another pipe" do
@@ -41,14 +41,10 @@ end
   end
 
   When "some more time passed" do
-    @pipes.update(6.13)
+    @pipes.update(5)
   end
 
-  Then "there is another pipe" do
-    expect(@pipes.pipes.size).to_equal(3)
-  end
-
-  And "on_jumped_through was called" do
+  Then "on_jumped_through was called again" do
     expect(@jumped_count).to_equal(2)
   end
 
@@ -56,7 +52,7 @@ end
     @pipes.update(3)
   end
 
-  Then "a pipe unloads" do
+  Then "pipes are cleaned up" do
     expect(@pipes.pipes.size).to_equal(2)
   end
 end
@@ -64,20 +60,14 @@ end
 @headed.describe "Game::Pipes#hitboxes" do
   Given "we have pipes" do
     @pipes = Game::Pipes.new(alien: Game::Alien.new)
-    @pipes.update(3.5)
   end
 
   Then "return the hitboxes for those pipes" do
     hitboxes = @pipes.hitboxes
-    expect(hitboxes.size).to_equal(4)
+    expect(hitboxes.size).to_equal(2)
 
-    # First pipe
-    expect(hitboxes[0].to_h.slice(:x, :y, :width, :height)).to_equal({x: 176.0, y: 0, width: 14.0, height: 266.0})
-    expect(hitboxes[1].to_h.slice(:x, :y, :width, :height)).to_equal({x: 176.0, y: 362.0, width: 14.0, height: 266.0})
-
-    # Second pipe
-    expect(hitboxes[2].to_h.slice(:x, :y, :width, :height)).to_equal({x: 402.0, y: 0, width: 14.0, height: 266.0})
-    expect(hitboxes[3].to_h.slice(:x, :y, :width, :height)).to_equal({x: 402.0, y: 362.0, width: 14.0, height: 266.0})
+    expect(hitboxes[0].to_h.slice(:x, :y, :width, :height)).to_equal({x: 402, y: -159, width: 14, height: 410})
+    expect(hitboxes[1].to_h.slice(:x, :y, :width, :height)).to_equal({x: 402, y: 347, width: 14, height: 410})
   end
 end
 

@@ -23,7 +23,7 @@ class Game
     end
 
     def position
-      offset = (@time_passed * 36) % 18
+      offset = (@time_passed * 48) % 18
       Vector2[
         0 - offset,
         600 - 4 * 18

@@ -45,7 +45,7 @@ end
   end
 
   Then "position is updated" do
-    expect(@ground.position.x).to_equal(-9)
+    expect(@ground.position.x).to_equal(-12)
   end
 
   When "we've been running a while" do
@@ -53,7 +53,7 @@ end
   end
 
   Then "the position has looped back" do
-    expect(@ground.position.x).to_equal(0)
+    expect(@ground.position.x).to_equal(-6)
   end
 end
 

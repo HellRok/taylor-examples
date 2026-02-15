@@ -8,8 +8,8 @@ class Game
       on_jumped_through: -> {}
     )
       @alien = alien
-      @pipes = [Vector2[300, 0]]
-      @velocity = Vector2[-36, 0]
+      @pipes = [Vector2[400, -159]]
+      @velocity = Vector2[-48, 0]
       @on_collision = on_collision
       @on_jumped_through = on_jumped_through
       generate_texture
@@ -18,6 +18,14 @@ class Game
     def generate_texture
       tilemap = Resources.tilemaps("./assets/tiles.png", size: 18)
       image = tilemap.generate_from([
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
         [115],
         [115],
         [115],
@@ -52,13 +60,26 @@ class Game
         [115],
         [115],
         [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
+        [115],
         [115]
       ])
       @texture = image.to_texture
     end
 
     def spawn_pipe
-      @pipes.push(Vector2[400, 0])
+      @pipes.push(
+        Vector2[
+          400,
+          (rand * -378).to_i
+        ]
+      )
     end
 
     def update(delta)
@@ -92,8 +113,8 @@ class Game
       width = @texture.width - (buffer * 2)
       height = ((@texture.height - gap) / 2) - (buffer * 2)
 
-      # 15 pipe tiles
-      offset_y = (15 * 18) + gap + buffer
+      # 23 pipe tiles
+      offset_y = (23 * 18) + gap + buffer
 
       @pipes.flat_map do |pipe|
         [
