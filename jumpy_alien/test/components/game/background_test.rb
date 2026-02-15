@@ -37,7 +37,7 @@ end
   end
 
   Then "we start at the start" do
-    expect(@background.position.x).to_equal(240)
+    expect(@background.position.x).to_equal(0)
   end
 
   And "some time has passed" do
@@ -45,7 +45,7 @@ end
   end
 
   Then "position is updated" do
-    expect(@background.position.x).to_equal(228)
+    expect(@background.position.x).to_equal(-12)
   end
 
   When "we've been running a while" do
@@ -53,7 +53,7 @@ end
   end
 
   Then "the position has looped back" do
-    expect(@background.position.x).to_equal(240)
+    expect(@background.position.x).to_equal(0)
   end
 end
 

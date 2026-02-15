@@ -72,12 +72,12 @@ end
     expect(hitboxes.size).to_equal(4)
 
     # First pipe
-    expect(hitboxes[0].to_h.slice(:x, :y, :width, :height)).to_equal({x: 167.0, y: -13.0, width: 14.0, height: 266.0})
-    expect(hitboxes[1].to_h.slice(:x, :y, :width, :height)).to_equal({x: 167.0, y: 347.0, width: 14.0, height: 266.0})
+    expect(hitboxes[0].to_h.slice(:x, :y, :width, :height)).to_equal({x: 176.0, y: 0, width: 14.0, height: 266.0})
+    expect(hitboxes[1].to_h.slice(:x, :y, :width, :height)).to_equal({x: 176.0, y: 362.0, width: 14.0, height: 266.0})
 
     # Second pipe
-    expect(hitboxes[2].to_h.slice(:x, :y, :width, :height)).to_equal({x: 393.0, y: -13.0, width: 14.0, height: 266.0})
-    expect(hitboxes[3].to_h.slice(:x, :y, :width, :height)).to_equal({x: 393.0, y: 347.0, width: 14.0, height: 266.0})
+    expect(hitboxes[2].to_h.slice(:x, :y, :width, :height)).to_equal({x: 402.0, y: 0, width: 14.0, height: 266.0})
+    expect(hitboxes[3].to_h.slice(:x, :y, :width, :height)).to_equal({x: 402.0, y: 362.0, width: 14.0, height: 266.0})
   end
 end
 

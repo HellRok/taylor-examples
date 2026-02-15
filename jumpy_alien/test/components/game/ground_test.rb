@@ -37,7 +37,7 @@ end
   end
 
   Then "we start at the start" do
-    expect(@ground.position.x).to_equal(200)
+    expect(@ground.position.x).to_equal(0)
   end
 
   And "some time has passed" do
@@ -45,7 +45,7 @@ end
   end
 
   Then "position is updated" do
-    expect(@ground.position.x).to_equal(191)
+    expect(@ground.position.x).to_equal(-9)
   end
 
   When "we've been running a while" do
@@ -53,7 +53,7 @@ end
   end
 
   Then "the position has looped back" do
-    expect(@ground.position.x).to_equal(200)
+    expect(@ground.position.x).to_equal(0)
   end
 end
 
@@ -64,6 +64,6 @@ end
 
   Then "we've built a ground" do
     expect(@ground.texture.width).to_equal(432)
-    expect(@ground.texture.height).to_equal(90)
+    expect(@ground.texture.height).to_equal(72)
   end
 end

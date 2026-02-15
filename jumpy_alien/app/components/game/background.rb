@@ -54,10 +54,7 @@ class Game
 
     def position
       offset = (@time_passed * 24) % 24
-      Vector2[
-        240 - offset,
-        400
-      ]
+      Vector2[0 - offset, 0]
     end
 
     def draw

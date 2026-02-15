@@ -16,7 +16,7 @@ class Game
       @position = Vector2[180, 300]
       @velocity = Vector2[0, 0]
       @hitbox = Rectangle.new(
-        x: @position.x - 8, y: @position.y - 8,
+        x: @position.x + 4, y: @position.y + 4,
         width: 16, height: 16,
         colour: Colour::BLANK,
         outline: Colour::BLUE
@@ -45,8 +45,8 @@ class Game
         @velocity.y = JUMP if jump_pressed?
 
         @position += @velocity
-        @hitbox.x = @position.x - 8
-        @hitbox.y = @position.y - 8
+        @hitbox.x = @position.x + 4
+        @hitbox.y = @position.y + 4
       end
     end
 
@@ -59,8 +59,8 @@ class Game
 
       when :dead
         Rectangle.new(
-          x: @position.x - 16,
-          y: @position.y - 16,
+          x: @position.x,
+          y: @position.y,
           width: 32,
           height: 32,
           colour: Colour::RED,

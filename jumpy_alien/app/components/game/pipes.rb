@@ -8,7 +8,7 @@ class Game
       on_jumped_through: -> {}
     )
       @alien = alien
-      @pipes = [Vector2[300, 300]]
+      @pipes = [Vector2[300, 0]]
       @velocity = Vector2[-36, 0]
       @on_collision = on_collision
       @on_jumped_through = on_jumped_through
@@ -58,7 +58,7 @@ class Game
     end
 
     def spawn_pipe
-      @pipes.push(Vector2[400, 300])
+      @pipes.push(Vector2[400, 0])
     end
 
     def update(delta)
@@ -91,20 +91,20 @@ class Game
       gap = 5 * 18 # 5 tiles of gap
       width = @texture.width - (buffer * 2)
       height = ((@texture.height - gap) / 2) - (buffer * 2)
-      offset_x = (@texture.width / 2) - buffer
-      offset_y_top = (gap / 2) + buffer + height
-      offset_y_bottom = (gap / 2) + buffer
+
+      # 15 pipe tiles
+      offset_y = (15 * 18) + gap + buffer
 
       @pipes.flat_map do |pipe|
         [
           Rectangle.new(
-            x: pipe.x - offset_x, y: pipe.y - offset_y_top,
+            x: pipe.x + buffer, y: pipe.y,
             width: width, height: height,
             colour: Colour::BLANK,
-            outline: Colour::RED
+            outline: Colour::GREEN
           ),
           Rectangle.new(
-            x: pipe.x - offset_x, y: pipe.y + offset_y_bottom,
+            x: pipe.x + buffer, y: pipe.y + offset_y,
             width: width, height: height,
             colour: Colour::BLANK,
             outline: Colour::RED
