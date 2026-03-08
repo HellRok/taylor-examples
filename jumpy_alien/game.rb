@@ -22,7 +22,7 @@ Window.target_frame_rate = Monitor.current.refresh_rate
 
 Scene.setup
 Scene.current = MainMenu.new
-Scene.current = Game.new if Scene::DEBUG
+Scene.current = SettingsMenu.new if Scene::DEBUG
 
 # Define your main method
 def main
