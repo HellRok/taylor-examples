@@ -135,12 +135,7 @@ class Game
     end
 
     def check_for_collisions
-      hit = hitboxes.any? do |pipe_hitbox|
-        pipe_hitbox.x < (@alien.hitbox.x + @alien.hitbox.width) &&
-          (pipe_hitbox.x + pipe_hitbox.width) > @alien.hitbox.x &&
-          pipe_hitbox.y < (@alien.hitbox.y + @alien.hitbox.height) &&
-          (pipe_hitbox.y + pipe_hitbox.height) > @alien.hitbox.y
-      end
+      hit = hitboxes.any? { |hitbox| hitbox.overlaps? @alien.hitbox }
 
       @on_collision.call if hit
     end
