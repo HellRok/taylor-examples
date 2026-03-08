@@ -21,7 +21,7 @@ class MainMenu
       test_id: :quit_button,
       text: "Quit",
       position: Rectangle[20, 510, 320, 70]
-    ) {}
+    ) { Scene.close }
   end
 
   def any_button_hover?
