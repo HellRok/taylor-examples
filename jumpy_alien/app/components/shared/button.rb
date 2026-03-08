@@ -22,6 +22,7 @@ module Button
   end
 
   def click
+    Scene.audio_manager.play(:click)
     return if @callback_called
 
     @callback_called = true

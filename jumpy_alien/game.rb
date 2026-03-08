@@ -3,8 +3,9 @@ $: << "./vendor"
 
 require "tilemap"
 
-require "app/models/scene"
 require "app/models/resources"
+require "app/models/audio_manager"
+require "app/models/scene"
 
 require "app/scenes/main_menu"
 require "app/scenes/settings_menu"
@@ -19,6 +20,7 @@ Audio.open
 # Get the current monitor frame rate and set our target frame rate to match.
 Window.target_frame_rate = Monitor.current.refresh_rate
 
+Scene.setup
 Scene.current = MainMenu.new
 Scene.current = Game.new if Scene::DEBUG
 
@@ -32,7 +34,6 @@ def main
 
   Window.draw do
     # Your drawing logic goes here
-
     Scene.draw
   end
 end

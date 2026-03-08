@@ -42,7 +42,10 @@ class Game
 
         @velocity.y = MAX_FALL_VELOCITY if @velocity.y > MAX_FALL_VELOCITY
 
-        @velocity.y = JUMP if jump_pressed?
+        if jump_pressed?
+          @velocity.y = JUMP
+          Scene.audio_manager.play(:jump)
+        end
 
         @position += @velocity
         @hitbox.x = @position.x + 4
@@ -72,6 +75,9 @@ class Game
       @hitbox.draw if Scene::DEBUG
     end
 
-    def kill = @state = :dead
+    def kill
+      @state = :dead
+      Scene.audio_manager.play(:death)
+    end
   end
 end

@@ -10,12 +10,25 @@ require "test/lib/test_scene"
 Logging.level = Logging::NONE
 
 @unit = Neospec::Suite.new
+@unit.setup do
+  Audio.open
+  Scene.setup
+  Scene.audio_manager.master_volume = 0
+end
+@unit.teardown do
+  Audio.close
+end
+
 @headed = Neospec::Suite.new
 @headed.setup do
   Window.config = Window::Flag::HIDDEN | Window::Flag::UNFOCUSED
   Window.open(width: 100, height: 100, title: "=== Tests ===")
+  Audio.open
+  Scene.setup
+  Scene.audio_manager.master_volume = 0
 end
 @headed.teardown do
+  Audio.close
   Window.close
 end
 
@@ -26,6 +39,7 @@ require "tilemap"
 
 require "app/models/resources"
 require "app/models/scene"
+require "app/models/audio_manager"
 require "app/scenes/main_menu"
 require "app/scenes/settings_menu"
 require "app/scenes/game"

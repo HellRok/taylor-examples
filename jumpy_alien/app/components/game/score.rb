@@ -16,6 +16,7 @@ class Game
     def increment
       @score += 1
       @text_position = nil
+      Scene.audio_manager.play(:death)
     end
 
     def font = Resources.font("./assets/kenney_pixel.ttf", size: @font_size)

@@ -2,6 +2,8 @@ module Resources
   @@fonts = {}
   @@images = {}
   @@tilemaps = {}
+  @@music = {}
+  @@sounds = {}
 
   def self.font(font, size: 22)
     @@fonts[[font, size]] ||= Font.new(font, size: size)
@@ -16,5 +18,13 @@ module Resources
       image: image(path),
       size: size
     )
+  end
+
+  def self.music(path, volume:)
+    @@music[path] ||= Music.new(path, volume: volume)
+  end
+
+  def self.sound(path, volume:)
+    @@sounds[path] ||= Sound.new(path, volume: volume)
   end
 end

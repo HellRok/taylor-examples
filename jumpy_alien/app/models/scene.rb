@@ -3,6 +3,14 @@ class Scene
   @debug_info = {}
   @current = nil
   @should_close = false
+  @audio_manager = nil
+
+  def self.setup
+    @audio_manager = AudioManager.new
+    @audio_manager.play_background_music
+  end
+
+  def self.audio_manager = @audio_manager
 
   def self.debug_info = @debug_info
 
@@ -15,6 +23,7 @@ class Scene
   def self.update(delta)
     @debug_info = {}
     @debug_info.merge! ObjectSpace.count_objects
+    @audio_manager.update
     current.update(delta)
   end
 
