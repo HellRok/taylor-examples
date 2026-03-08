@@ -46,6 +46,17 @@ class MainMenu
     }
   end
 
+  def font = Resources.font("./assets/kenney_pixel.ttf", size: 96)
+
+  def position(text)
+    size = font.measure(text)
+
+    Vector2[
+      ((360 - size.width) / 2),
+      ((350 - size.height) / 2)
+    ]
+  end
+
   def update(delta)
     @play_button.update
     @settings_button.update
@@ -62,6 +73,12 @@ class MainMenu
 
   def draw
     Window.clear colour: Colour::RAYWHITE
+
+    font.draw(
+      "Jumpy\nAlien",
+      position: position("Jumpy\nAlien")
+    )
+
     @play_button.draw
     @settings_button.draw
     @quit_button.draw

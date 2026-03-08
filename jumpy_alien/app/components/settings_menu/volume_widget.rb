@@ -28,7 +28,7 @@ class SettingsMenu
     def position(text, offset)
       size = font.measure(text)
 
-      @volume_position = Vector2[
+      Vector2[
         ((360 - size.width) / 2),
         @offset + offset + ((50 - size.height) / 2)
       ]
