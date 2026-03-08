@@ -21,10 +21,30 @@ class Game
       on_collision: method(:player_died),
       on_jumped_through: method(:jump_through_pipe)
     )
+
+    @border_hitboxes = [
+      Rectangle.new(
+        x: 0, y: -100,
+        width: 360, height: 100,
+        colour: Colour::BLANK,
+        outline: Colour::PURPLE
+      ),
+      Rectangle.new(
+        x: 0, y: 600 - 4 * 18,
+        width: 360, height: 4 * 18,
+        colour: Colour::BLANK,
+        outline: Colour::PURPLE
+      )
+    ]
+  end
+
+  def collision_check
+    player_died if @border_hitboxes.any? { |hitbox| hitbox.overlaps? @alien.hitbox }
   end
 
   def update(delta)
     @alien.update(delta)
+    collision_check
 
     if @state == :playing
       @background.update(delta)
@@ -43,6 +63,8 @@ class Game
     @score.draw
 
     @end_screen&.draw
+
+    @border_hitboxes.map(&:draw) if Scene::DEBUG
   end
 
   def jump_through_pipe = @score.increment
