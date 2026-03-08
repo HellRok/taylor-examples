@@ -7,6 +7,7 @@ require "app/models/scene"
 require "app/models/resources"
 
 require "app/scenes/main_menu"
+require "app/scenes/settings_menu"
 require "app/scenes/game"
 
 # Open up a window

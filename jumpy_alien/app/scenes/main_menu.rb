@@ -15,7 +15,7 @@ class MainMenu
       test_id: :settings_button,
       text: "Settings",
       position: Rectangle[20, 430, 320, 70]
-    ) {}
+    ) { settings! }
 
     @quit_button = MainMenu::Button.new(
       test_id: :quit_button,
@@ -36,6 +36,13 @@ class MainMenu
     @transition = FadeOut.new {
       Cursor.icon = Cursor::DEFAULT
       Scene.current = Game.new
+    }
+  end
+
+  def settings!
+    @transition = FadeOut.new {
+      Cursor.icon = Cursor::DEFAULT
+      Scene.current = SettingsMenu.new
     }
   end
 
