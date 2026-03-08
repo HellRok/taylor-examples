@@ -44,9 +44,9 @@ class Game
 
   def update(delta)
     @alien.update(delta)
-    collision_check
 
     if @state == :playing
+      collision_check
       @background.update(delta)
       @ground.update(delta)
       @pipes.update(delta)
